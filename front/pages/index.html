@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Start</title>
+        <style>
+            body {
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Startup page</h1>
+
+            <h5>Apps loaded and sessions started:</h5>
+            <dl>
+                {% for app in apps %}
+                <dt>{{app}}</dt>
+                <dd><a href="{{ url_for('app', app=app) }}">Start session</a></dd>
+                {% endfor %}
+            </dl>
+        </main>
+    </body>
+</html>
