@@ -72,10 +72,18 @@ async def index(request: Request) -> Response:
             sessions[app] = []
         sessions[app].append(sid)
 
+    filenames = {}
+    for app in APPS.values():
+        filenames[app.name] = "/".join(Path(app.module.__file__).parts[-2:])
+
     return templates.TemplateResponse(
         request,
         "index.html",
-        {"apps": APPS.values(), "sessions": sessions},
+        {
+            "apps": APPS.values(),
+            "sessions": sessions,
+            "filenames": filenames,
+        },
     )
 
 
@@ -166,6 +174,7 @@ app = Starlette(
         Route("/start/{app}", startapp, name="start"),
         Route("/run/{app}/{sid}", runapp, name="run", methods=["GET", "POST"]),
         WebSocketRoute("/run/{app}/{sid}/socket", socket, name="socket"),
+        Mount("/code", StaticFiles(directory=APPSDIR), name="code"),
         Route("/", index),
     ],
 )

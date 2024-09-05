@@ -17,7 +17,7 @@
 
 <body class="container">
     <main>
-        <h1>Apps loaded</h1>
+        <h1>Demo Apps</h1>
 
         {% for app in apps %}
         <div class="m-3 p-3 border rounded">
@@ -26,8 +26,8 @@
             <hr>
             <a href="{{ url_for('start', app=app.name) }}">Start session</a>
             {% if sessions[app.name] %}
-            <hr>
             <h6>Running sessions</h6>
+            <hr>
             <ul>
                 {% for sid in sessions[app.name] %}
                 <li>
@@ -36,6 +36,8 @@
                 {% endfor %}
             </ul>
             {% endif %}
+            <hr>
+            <a href="{{ url_for('code', path=filenames[app.name])}}">See code</a>
         </div>
 
         {% endfor %}
