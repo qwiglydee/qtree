@@ -39,7 +39,7 @@ export async function setup(socket, main) {
 
         if ("inputs" in data) {
             inputs = data["inputs"];
-            nextbtn.hidden = !inputs.contains("next");
+            nextbtn.hidden = !inputs.includes("next");
         } else {
             nextbtn.hidden = false;
         }
