@@ -3,7 +3,7 @@
 Using pages and forms
 """
 
-from back.io import page, form
+from back.io import page, form, input, update, NEXT_BTN
 
 TRIALS = ["foo", "bar", "baz"]
 

@@ -18,7 +18,7 @@ def script():
 
     yield from questionnaire()
 
-    yield message("<h3>Now play some trials</h3>")
+    yield message("<h3>Now you're gonna play some simple trials</h3>")
 
     yield from bar.script()
 
@@ -40,3 +40,5 @@ def questionnaire():
         income = response["income"]
 
     logging.debug(f"{gender=} {age=} {income=}")
+
+    # NB: cannot return the values

@@ -47,23 +47,20 @@ class State:
     inputs: Model = field(default_factory=dict)
 
     def affect(self, effect: Effect):
-        if "T" in effect:
-            assert isinstance(effect["T"], (str, Template))
-            if isinstance(effect["T"], str):
-                self.template = Template(effect["T"], undefined=MyUdefined)
+        if effect.T:
+            if isinstance(effect.T, Template):
+                self.template = effect.T
             else:
-                self.template = effect["T"]
+                self.template = Template(effect.T, undefined=MyUdefined)
             self.content = self.template.render(self.data)
 
-        if "V" in effect:
+        if effect.V:
+            self.data.update(effect.V)
             assert self.template and isinstance(self.template, Template)
-            assert isinstance(effect["V"], dict)
-            self.data.update(effect["V"])
             self.content = self.template.render(self.data)
 
-        if "I" in effect:
-            assert isinstance(effect["I"], dict)
-            self.inputs = effect["I"]
+        if effect.I:
+            self.inputs = effect.I
         else:
             self.inputs = dict()
 

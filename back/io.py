@@ -1,32 +1,35 @@
+from back.types import Model, Data, Effect
 from back.templates import templates
 
-
-def output(template):
-    return {"T": template}
+NEXT_BTN = {"next": bool}
 
 
-def update(data):
-    return {"V": data}
+def output(template: str) -> Effect:
+    return Effect(template)
 
 
-def input(fields):
-    return {"I": fields}
+def update(data: Data) -> Effect:
+    return Effect(V=data)
 
 
-def message(html):
-    return {"T": html, "I": {"next": bool}}
+def input(fields: Model) -> Effect:
+    return Effect(I=fields)
 
 
-def page(filename, data=None):
+def message(html: str) -> Effect:
+    return Effect(html, I=NEXT_BTN)
+
+
+def page(filename, data=None) -> Effect:
     template = templates.get_template(filename)
     if data is None:
         data = {}
-    return {"T": template, "V": data, "I": {"next": bool}}
+    return Effect(template, data, NEXT_BTN)
 
 
-def form(filename, data, fields):
+def form(filename, data, fields) -> Effect:
     template = templates.get_template(filename)
     if data is None:
         data = {}
-    fields["next"] = bool
-    return {"T": template, "V": data, "I": fields}
+    fields.update(NEXT_BTN)
+    return Effect(template, data, fields)
