@@ -24,7 +24,7 @@ def script():
     logger.debug("welcome page")
     yield output(
         """
-                 <h2>Welcome</h2>
+                 <h2>Welcome to Foo</h2>
                  <p>Hello...</p>
                  """
     )

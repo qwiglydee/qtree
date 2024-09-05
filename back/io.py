@@ -13,6 +13,10 @@ def input(fields):
     return {"I": fields}
 
 
+def message(html):
+    return {"T": html, "I": {"next": bool}}
+
+
 def page(filename, data=None):
     template = templates.get_template(filename)
     if data is None:
