@@ -118,7 +118,7 @@ async def runapp(request: Request):
             request,
             "fin.html",
             {
-                "app": {"name": appname, "title": app.title, "descr": app.description},
+                "app": {"module": app.module.__name__, "name": app.name, "title": app.title, "descr": app.description},
                 "sid": sid,
             },
         )

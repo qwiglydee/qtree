@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Start</title>
+    <link rel="stylesheet" href="{{ url_for('assets', path='bootstrap.min.css')}}">
     <style>
         body {
             display: flex;
@@ -14,32 +15,30 @@
     </style>
 </head>
 
-<body>
+<body class="container">
     <main>
         <h1>Apps loaded</h1>
 
-        <dl>
-            {% for app in apps %}
-            <dt>{{app.name}}</dt>
-            <dd>{{app.title}}</dd>
-            <dd>{{app.description}}</dd>
-            <dd>
-                <a href="{{ url_for('start', app=app.name) }}">Start session</a>
-            </dd>
+        {% for app in apps %}
+        <div class="m-3 p-3 border rounded">
+            <h5>{{app.name}} — {{app.title}}</h5>
+            <p>{{app.description}}</p>
+            <hr>
+            <a href="{{ url_for('start', app=app.name) }}">Start session</a>
             {% if sessions[app.name] %}
-            <dd>
-                <h6>Running sessions</h6>
-                <ul>
-                    {% for sid in sessions[app.name] %}
-                    <li>
-                        <a href="{{ url_for('run', app=app.name, sid=sid) }}">{{sid}}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </dd>
+            <hr>
+            <h6>Running sessions</h6>
+            <ul>
+                {% for sid in sessions[app.name] %}
+                <li>
+                    <a href="{{ url_for('run', app=app.name, sid=sid) }}">{{sid}}</a>
+                </li>
+                {% endfor %}
+            </ul>
             {% endif %}
-            {% endfor %}
-        </dl>
+        </div>
+
+        {% endfor %}
     </main>
 </body>
 

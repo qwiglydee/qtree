@@ -3,13 +3,15 @@
 Using pages and forms
 """
 
-from back.io import page, form, input, update, NEXT_BTN
+from back.io import page, form, message
 
 TRIALS = ["foo", "bar", "baz"]
 
 
 def script():
-    yield page("bar/welcome.html")
+    yield page("bar/welcome.html", {"text": "Hello..."})
+
+    yield message("<h3>Now you're gonna play some simple trials</h3>")
 
     replies = []
     progress = {"total": len(TRIALS), "iter": 0}
@@ -22,3 +24,5 @@ def script():
     score = sum(trial == reply for trial, reply in zip(TRIALS, replies))
 
     yield page("bar/results.html", {"score": score})
+
+    yield message("<p>Thanks for participation</p>")

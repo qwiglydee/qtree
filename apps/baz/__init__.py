@@ -1,6 +1,6 @@
 """ Advanced flow
 
-Combining nested scripts and other apps
+Combining scripts and other apps
 """
 
 import logging
@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-from back.io import page, form, message
+from back.io import page, form
 
 from apps import bar
 
@@ -18,11 +18,7 @@ def script():
 
     yield from questionnaire()
 
-    yield message("<h3>Now you're gonna play some simple trials</h3>")
-
     yield from bar.script()
-
-    yield message("<p>Thanks for participation</p>")
 
 
 def questionnaire():
