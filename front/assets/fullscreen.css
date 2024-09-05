@@ -1,0 +1,88 @@
+/** width copy-pasted from boostrap container */
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
+.container {
+    margin: auto;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    padding: 0;
+}
+
+/** page sections **/
+
+header,
+main,
+footer {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0.75rem;
+}
+
+header {
+    justify-content: start;
+    align-items: center;
+}
+
+main {
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    justify-content: end;
+    align-items: center;
+}
+
+header,
+footer {
+    flex: 1 1 25%;
+}
+
+main {
+    flex: 1 1 50%;
+}
+
+/* clean up header and paragraph margins */
+footer > *:last-child,
+header > *:last-child,
+main > *:last-child {
+    margin-bottom: 0;
+}
+
+/* prevent inputs to be too wide */
+.input-group {
+    width: auto;
+}

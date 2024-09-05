@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Start</title>
-        <style>
-            body {
-                display: flex;
-                flex-flow: column;
-                align-items: center;
-            }
-        </style>
-    </head>
-    <body>
-        <main>
-            <h1>Startup page</h1>
 
-            <h5>Apps loaded and sessions started:</h5>
-            <dl>
-                {% for app in apps %}
-                <dt>{{app}}</dt>
-                <dd><a href="{{ url_for('app', app=app) }}">Start session</a></dd>
-                {% endfor %}
-            </dl>
-        </main>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Start</title>
+    <style>
+        body {
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Apps loaded</h1>
+
+        <dl>
+            {% for app in apps %}
+            <dt>{{app.name}}</dt>
+            <dd>{{app.title}}</dd>
+            <dd>{{app.description}}</dd>
+            <dd>
+                <a href="{{ url_for('start', app=app.name) }}">Start session</a>
+            </dd>
+            {% if sessions[app.name] %}
+            <dd>
+                <h6>Running sessions</h6>
+                <ul>
+                    {% for sid in sessions[app.name] %}
+                    <li>
+                        <a href="{{ url_for('run', app=app.name, sid=sid) }}">{{sid}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </dd>
+            {% endif %}
+            {% endfor %}
+        </dl>
+    </main>
+</body>
+
 </html>

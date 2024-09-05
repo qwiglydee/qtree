@@ -1,6 +1,6 @@
-""" TODO: Forms
+""" TODO: Combined apps
 
-Using forms with validation
+Call another apps from script
 """
 
 

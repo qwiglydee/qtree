@@ -10,7 +10,7 @@ log_conf["loggers"]["root"] = {"handlers": ["default"], "level": "DEBUG"}
 
 if __name__ == "__main__":
     uvicorn.run(
-        "back.app:app",
+        "back.main:app",
         host=environ.get("HOST", "0.0.0.0"),
         port=int(environ.get("PORT", 8000)),
         root_path=environ.get("ROOT_PATH", ""),
