@@ -48,8 +48,11 @@ class State:
 
     def affect(self, effect: Effect):
         if "T" in effect:
-            assert isinstance(effect["T"], str)
-            self.template = Template(effect["T"], undefined=MyUdefined)
+            assert isinstance(effect["T"], (str, Template))
+            if isinstance(effect["T"], str):
+                self.template = Template(effect["T"], undefined=MyUdefined)
+            else:
+                self.template = effect["T"]
             self.content = self.template.render(self.data)
 
         if "V" in effect:

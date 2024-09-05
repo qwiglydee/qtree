@@ -1,3 +1,6 @@
+from back.templates import templates
+
+
 def output(template):
     return {"T": template}
 
@@ -10,9 +13,16 @@ def input(fields):
     return {"I": fields}
 
 
-def page(filename, data):
-    pass
+def page(filename, data=None):
+    template = templates.get_template(filename)
+    if data is None:
+        data = {}
+    return {"T": template, "V": data, "I": {"next": bool}}
 
 
 def form(filename, data, fields):
-    pass
+    template = templates.get_template(filename)
+    if data is None:
+        data = {}
+    fields["next"] = bool
+    return {"T": template, "V": data, "I": fields}
