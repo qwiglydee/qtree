@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App {{app.title}}</title>
+    <link rel="stylesheet" href="{{ url_for('assets', path='bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('assets', path='fullscreen.css') }}" />
+</head>
+
+<body class="container">
+    <header>
+        <h1>{{app.title}}</h1>
+        <p>module: <code>{{app.module}}</code> session: <code>{{sid}}</code></p>
+    </header>
+    <main>
+        <div class="alert alert-info">
+            Succesfully completed.
+        </div>
+    </main>
+    <footer>
+    </footer>
+</body>
+
+</html>

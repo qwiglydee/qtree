@@ -1,0 +1,53 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    padding: 0;
+}
+
+/** page sections **/
+
+header,
+main,
+footer {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0.75rem;
+}
+
+header {
+    justify-content: start;
+    align-items: center;
+}
+
+main {
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    justify-content: end;
+    align-items: center;
+}
+
+header,
+footer {
+    flex: 1 1 25%;
+}
+
+main {
+    flex: 1 1 50%;
+}
+
+/* clean up header and paragraph margins */
+footer > *:last-child,
+header > *:last-child,
+main > *:last-child {
+    margin-bottom: 0;
+}
+
+/* prevent inputs to be too wide */
+.input-group {
+    width: auto;
+}

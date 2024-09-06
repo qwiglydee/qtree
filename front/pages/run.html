@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App {{app.title}}</title>
+    <link rel="stylesheet" href="{{ url_for('assets', path='bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('assets', path='fullscreen.css') }}" />
+    <script type="importmap">
+            {
+                "imports": {
+                    "socket.js": "{{ url_for('scripts', path='socket.js') }}",
+                    "app.js": "{{ url_for('scripts', path='app.js') }}"
+                }
+            }
+        </script>
+    <script type="module">
+        "use strict";
+        import { AppSocket } from "socket.js";
+        import { setup } from "app.js";
+        const socket = new AppSocket("{{ url_for('socket', app=app.name, sid=sid) }}");
+        setup(socket, document.querySelector("main"));
+        socket.start();
+        window.ws = socket; // for debugging
+    </script>
+</head>
+
+<body class="container">
+    <header>
+        <h1>{{app.title}}</h1>
+        <p>module: <code>{{app.module}}</code> session: <code>{{sid}}</code></p>
+    </header>
+    <main class="border rounded text-bg-light">
+        <!-- content is dynamically inserted here -->
+    </main>
+    <footer>
+        <!-- common button -->
+        <button type="button" name="next" class="btn btn-secondary">Next</button>
+    </footer>
+    <form id="form" method="POST"></form>
+</body>
+
+</html>
